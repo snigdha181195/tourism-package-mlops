@@ -1,0 +1,179 @@
+{
+  "best_model": "RandomForest",
+  "best_params": {
+    "model__n_estimators": 120,
+    "model__min_samples_split": 2,
+    "model__min_samples_leaf": 2,
+    "model__max_features": "log2",
+    "model__max_depth": 12
+  },
+  "test_metrics": {
+    "accuracy": 0.9053549190535491,
+    "precision": 0.8434782608695652,
+    "recall": 0.6258064516129033,
+    "f1": 0.7185185185185186,
+    "roc_auc": 0.9406113102349661,
+    "confusion_matrix": [
+      [
+        630,
+        18
+      ],
+      [
+        58,
+        97
+      ]
+    ],
+    "classification_report": {
+      "0": {
+        "precision": 0.9156976744186046,
+        "recall": 0.9722222222222222,
+        "f1-score": 0.9431137724550899,
+        "support": 648.0
+      },
+      "1": {
+        "precision": 0.8434782608695652,
+        "recall": 0.6258064516129033,
+        "f1-score": 0.7185185185185186,
+        "support": 155.0
+      },
+      "accuracy": 0.9053549190535491,
+      "macro avg": {
+        "precision": 0.879587967644085,
+        "recall": 0.7990143369175627,
+        "f1-score": 0.8308161454868042,
+        "support": 803.0
+      },
+      "weighted avg": {
+        "precision": 0.9017574389265735,
+        "recall": 0.9053549190535491,
+        "f1-score": 0.8997610148459135,
+        "support": 803.0
+      }
+    }
+  },
+  "leaderboard": [
+    {
+      "model": "RandomForest",
+      "accuracy": 0.9053549190535491,
+      "precision": 0.8434782608695652,
+      "recall": 0.6258064516129033,
+      "f1": 0.7185185185185186,
+      "roc_auc": 0.9406113102349661,
+      "confusion_matrix": [
+        [
+          630,
+          18
+        ],
+        [
+          58,
+          97
+        ]
+      ],
+      "classification_report": {
+        "0": {
+          "precision": 0.9156976744186046,
+          "recall": 0.9722222222222222,
+          "f1-score": 0.9431137724550899,
+          "support": 648.0
+        },
+        "1": {
+          "precision": 0.8434782608695652,
+          "recall": 0.6258064516129033,
+          "f1-score": 0.7185185185185186,
+          "support": 155.0
+        },
+        "accuracy": 0.9053549190535491,
+        "macro avg": {
+          "precision": 0.879587967644085,
+          "recall": 0.7990143369175627,
+          "f1-score": 0.8308161454868042,
+          "support": 803.0
+        },
+        "weighted avg": {
+          "precision": 0.9017574389265735,
+          "recall": 0.9053549190535491,
+          "f1-score": 0.8997610148459135,
+          "support": 803.0
+        }
+      },
+      "best_params": {
+        "model__n_estimators": 120,
+        "model__min_samples_split": 2,
+        "model__min_samples_leaf": 2,
+        "model__max_features": "log2",
+        "model__max_depth": 12
+      }
+    },
+    {
+      "model": "GradientBoosting",
+      "accuracy": 0.8430884184308842,
+      "precision": 0.8222222222222222,
+      "recall": 0.23870967741935484,
+      "f1": 0.37,
+      "roc_auc": 0.8027329749103942,
+      "confusion_matrix": [
+        [
+          640,
+          8
+        ],
+        [
+          118,
+          37
+        ]
+      ],
+      "classification_report": {
+        "0": {
+          "precision": 0.8443271767810027,
+          "recall": 0.9876543209876543,
+          "f1-score": 0.9103840682788051,
+          "support": 648.0
+        },
+        "1": {
+          "precision": 0.8222222222222222,
+          "recall": 0.23870967741935484,
+          "f1-score": 0.37,
+          "support": 155.0
+        },
+        "accuracy": 0.8430884184308842,
+        "macro avg": {
+          "precision": 0.8332746995016125,
+          "recall": 0.6131819992035046,
+          "f1-score": 0.6401920341394025,
+          "support": 803.0
+        },
+        "weighted avg": {
+          "precision": 0.840060342463928,
+          "recall": 0.8430884184308842,
+          "f1-score": 0.8060758110145277,
+          "support": 803.0
+        }
+      },
+      "best_params": {
+        "model__subsample": 0.8,
+        "model__n_estimators": 80,
+        "model__max_depth": 2,
+        "model__learning_rate": 0.05
+      }
+    }
+  ],
+  "feature_columns": [
+    "Age",
+    "TypeofContact",
+    "CityTier",
+    "DurationOfPitch",
+    "Occupation",
+    "Gender",
+    "NumberOfPersonVisiting",
+    "NumberOfFollowups",
+    "ProductPitched",
+    "PreferredPropertyStar",
+    "MaritalStatus",
+    "NumberOfTrips",
+    "Passport",
+    "PitchSatisfactionScore",
+    "OwnCar",
+    "NumberOfChildrenVisiting",
+    "Designation",
+    "MonthlyIncome"
+  ]
+}

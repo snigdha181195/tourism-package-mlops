@@ -1,0 +1,66 @@
+name: Tourism MLOps Pipeline
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  train-register-deploy:
+    runs-on: ubuntu-latest
+    env:
+      HF_TOKEN: ${{ secrets.HF_TOKEN }}
+      HF_DATASET_REPO: ${{ secrets.HF_DATASET_REPO }}
+      HF_MODEL_REPO: ${{ secrets.HF_MODEL_REPO }}
+      HF_SPACE_REPO: ${{ secrets.HF_SPACE_REPO }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Register raw dataset on Hugging Face
+        run: python -m src.data_registration --file data/raw/tourism.csv --repo-id "$HF_DATASET_REPO"
+
+      - name: Prepare and split data
+        run: >
+          python -m src.data_preparation
+          --input data/raw/tourism.csv
+          --train-output data/processed/train.csv
+          --test-output data/processed/test.csv
+          --hf-repo-id "$HF_DATASET_REPO"
+
+      - name: Train, tune, evaluate and register model
+        run: >
+          python -m src.train
+          --train data/processed/train.csv
+          --test data/processed/test.csv
+          --model-output models/tourism_purchase_pipeline.joblib
+          --metrics-output metrics/test_metrics.json
+          --experiments-output experiments/experiments.csv
+          --hf-model-repo "$HF_MODEL_REPO"
+
+      - name: Copy model into deployment package
+        run: cp models/tourism_purchase_pipeline.joblib deployment/
+
+      - name: Deploy Streamlit app to Hugging Face Space
+        run: python scripts/deploy_space.py
+
+      - name: Commit generated artifacts
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/processed models metrics experiments deployment/tourism_purchase_pipeline.joblib
+          git diff --cached --quiet || git commit -m "Automated model and data update [skip ci]"
+          git push
