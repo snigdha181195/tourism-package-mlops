@@ -14,7 +14,7 @@ api.create_repo(
 )
 
 files_to_upload = {
-    "app.py": "streamlit_app.py",
+    "app.py": "app.py",
     "requirements.txt": "requirements.txt",
     "Dockerfile": "Dockerfile",
     "tourism_purchase_pipeline.joblib": "tourism_purchase_pipeline.joblib",
